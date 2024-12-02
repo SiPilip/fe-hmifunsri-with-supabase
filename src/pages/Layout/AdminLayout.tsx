@@ -70,7 +70,7 @@ const AdminLayout = memo(() => {
           }}
         >
           <Sidebar>
-            <SidebarHeader>
+            <SidebarHeader className="flex items-center">
               <div className="mt-3 flex items-center gap-4">
                 <img
                   src="/img/logo-hmif.png"

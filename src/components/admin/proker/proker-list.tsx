@@ -9,7 +9,7 @@ import {
 import { getAllProker } from "@/lib/networks/prokerQueries";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { HiEllipsisHorizontalCircle } from "react-icons/hi2";
+import ProkerActionPopup from "./proker-action-popup";
 
 export default function ProkerList({ isLoadingForm }: any) {
   const {
@@ -50,7 +50,7 @@ export default function ProkerList({ isLoadingForm }: any) {
               <TableCell className="text-center">{item.event_format}</TableCell>
               <TableCell>{item.description}</TableCell>
               <TableCell>
-                <HiEllipsisHorizontalCircle className="text-3xl text-gray-400" />
+                <ProkerActionPopup data={item} />
               </TableCell>
             </TableRow>
           ))}
