@@ -1,13 +1,6 @@
-import {
-  Link,
-  Outlet,
-  ScrollRestoration,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
-import { Suspense, memo, useState } from "react";
-import { toast, Toaster } from "sonner";
-import { signOutUser } from "@/lib/networks/adminQueries";
+import { Link, Outlet, ScrollRestoration, useLocation } from "react-router-dom";
+import { CSSProperties, Suspense, memo, useState } from "react";
+import { Toaster } from "sonner";
 import {
   Sidebar,
   SidebarContent,
@@ -41,18 +34,22 @@ const AdminLayout = memo(() => {
       }),
   );
 
-  const navigate = useNavigate();
   const location = useLocation();
 
-  function logOut() {
-    // need backend
-    // document.cookie =
-    //   "supabase_token=; Max-Age=0; Path=/; Secure; HttpOnly; SameSite=Strict";
-    // window.location.reload();
-    signOutUser();
-    toast("Anda berhasil log out!");
-    navigate("/admin");
-  }
+  // function logOut() {
+  //   // need backend
+  //   // document.cookie =
+  //   //   "supabase_token=; Max-Age=0; Path=/; Secure; HttpOnly; SameSite=Strict";
+  //   // window.location.reload();
+  //   signOutUser();
+  //   toast("Anda berhasil log out!");
+  //   navigate("/admin");
+  // }
+
+  const customStyle: CSSProperties = {
+    "--sidebar-width": "20vw",
+    "--sidebar-width-mobile": "20rem",
+  } as CSSProperties;
 
   const [isOpenSidebar, setIsOpenSidebar] = useState(true);
 
@@ -64,10 +61,7 @@ const AdminLayout = memo(() => {
         <SidebarProvider
           open={isOpenSidebar}
           className="w-screen scroll-smooth font-poppins"
-          style={{
-            "--sidebar-width": "20vw",
-            "--sidebar-width-mobile": "20rem",
-          }}
+          style={customStyle}
         >
           <Sidebar>
             <SidebarHeader className="flex items-center">

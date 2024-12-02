@@ -1,7 +1,5 @@
 import ProkerDetailItem from "@/components/Proker/ProkerDetailItem";
-import { supabase } from "@/lib/createClient";
 import { getProkerData } from "@/lib/networks/prokerQueries";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 

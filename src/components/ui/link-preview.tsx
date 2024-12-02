@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
 import { encode } from "qss";

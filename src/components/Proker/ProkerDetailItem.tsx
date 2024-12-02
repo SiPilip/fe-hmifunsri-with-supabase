@@ -6,7 +6,6 @@ import {
 } from "../ui/breadcrumb";
 import { ArrowRight, Clock } from "lucide-react";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import ProgramCard from "../ProgramCard";
 import BreadcrumpCard from "../BreadcrumpCard";
 import { setBreadCrumb } from "@/lib/networks/breadCrumbQueries";

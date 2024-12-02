@@ -30,26 +30,26 @@ async function getMemberData() {
   }
 }
 
-async function getMemberDataByName(name: any) {
-  try {
-    const { data: fetchedData, error } = await supabase
-      .from("member")
-      .select("*")
-      .eq("name", name);
+// async function getMemberDataByName(name: any) {
+//   try {
+//     const { data: fetchedData, error } = await supabase
+//       .from("member")
+//       .select("*")
+//       .eq("name", name);
 
-    if (error) {
-      return null;
-    }
+//     if (error) {
+//       return null;
+//     }
 
-    if (!fetchedData) {
-      return null;
-    }
+//     if (!fetchedData) {
+//       return null;
+//     }
 
-    return fetchedData;
-  } catch (err) {
-    return null;
-  }
-}
+//     return fetchedData;
+//   } catch (err) {
+//     return null;
+//   }
+// }
 
 async function deleteMemberData(title: any, name: any) {
   const { data } = await supabase

@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/accordion";
 
 export function ComboBox({ framework, value, setValue, id }: any) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [open, setOpen] = React.useState(false);
 
   function searchLabel(value: any) {
@@ -42,7 +43,7 @@ export function ComboBox({ framework, value, setValue, id }: any) {
             <CommandList>
               <CommandEmpty>No framework found.</CommandEmpty>
               <CommandGroup>
-                {framework.map((framework: any, index: any) => (
+                {framework.map((framework: any) => (
                   <CommandItem
                     key={framework.value + framework.index}
                     value={framework.value}
