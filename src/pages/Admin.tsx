@@ -13,7 +13,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/input-admin";
 import { useNavigate } from "react-router-dom";
 
 import { signInUser } from "@/lib/networks/adminQueries";

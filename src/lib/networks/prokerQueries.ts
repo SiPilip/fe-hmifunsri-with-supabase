@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../createClient";
+import { v4 as uuidv4 } from "uuid";
 
 interface ColumnProker {
   name: string | null;
@@ -11,12 +12,67 @@ interface ColumnProker {
   assets: any | null;
 }
 
-async function setProkerData(data: any) {
-  const { error } = await supabase.from("proker").insert(data);
-  if (error) console.log(error.message);
+async function postProker(data: any) {
+  try {
+    // keluarin assets, dan inisiasi tempat file gambar
+    const assetsArray = Object.values(data.assets);
+    const pathImage: any = [];
+
+    // mapping asset array untuk filename
+    await Promise.all(
+      assetsArray.map(async (file: any) => {
+        let fileName = `${data.name}_${uuidv4()}`;
+        fileName = fileName.replace(" ", "-");
+
+        const { error: uploadError } = await supabase.storage
+          .from(`img/proker/${data.dinas.toLowerCase()}`)
+          .upload(fileName, file);
+
+        if (uploadError) {
+          throw new Error(
+            `Gagal upload foto ${data.name}: ${uploadError.message}`,
+          );
+        }
+
+        pathImage.push(`/img/proker/${data.dinas.toLowerCase()}/${fileName}`);
+      }),
+    );
+
+    // olah data, untuk dimasukin ke supabase
+    const processedValues = {
+      ...data,
+      dinas: data.dinas.toLowerCase(),
+      benefits: data.benefits
+        ? data.benefits.split(",").map((item: any) => item.trim())
+        : [],
+      assets: pathImage,
+    };
+
+    // create data
+    const { error } = await supabase.from("proker").insert(processedValues);
+
+    if (error) throw new Error(error.message);
+  } catch (err: any) {
+    throw new Error(err);
+  }
 }
 
-export async function getProkerData() {
+export async function getAllProker() {
+  try {
+    const { data, error } = await supabase
+      .from("proker")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) throw new Error(error.message);
+
+    return data;
+  } catch (err: any) {
+    throw new Error(err);
+  }
+}
+
+async function getProkerData() {
   try {
     const { data: fetchedData, error } = await supabase
       .from("proker")
@@ -55,5 +111,5 @@ function useProkerData() {
   return data;
 }
 
-export { setProkerData, useProkerData };
+export { postProker, useProkerData, getProkerData };
 export type { ColumnProker };

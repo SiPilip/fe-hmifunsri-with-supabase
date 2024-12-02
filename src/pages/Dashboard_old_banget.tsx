@@ -97,7 +97,11 @@ export default function Dashboard() {
               </TabsList>
             </SidebarContent>
           </Sidebar>
-          <main className="-ml-20 w-[80vw] px-10">
+          <main
+            className={cn("-ml-20 w-[80vw] px-10", {
+              "w-[100vw]": !isOpenSidebar,
+            })}
+          >
             <button
               onClick={() => setIsOpenSidebar((e) => !e)}
               className="group top-0 -ml-5 mt-5 flex rounded-md"

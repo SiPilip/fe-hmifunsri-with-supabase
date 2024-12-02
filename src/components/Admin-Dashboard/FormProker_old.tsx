@@ -11,7 +11,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { setProkerData } from "@/lib/networks/prokerQueries";
 import { supabase } from "@/lib/createClient";
 import { useEffect, useRef } from "react";
 import { toast } from "sonner";
@@ -118,7 +117,7 @@ export default function FormProker() {
       };
 
       // console.log(processedValues);
-      await setProkerData(processedValues);
+      // await setProkerData(processedValues);
       toast("Data berhasil disimpan!");
       form.reset();
 

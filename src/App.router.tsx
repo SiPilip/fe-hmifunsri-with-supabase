@@ -10,8 +10,12 @@ import Proker from "./pages/Proker";
 import Aspiration from "./pages/Aspiration";
 import ProkerDetail from "./pages/ProkerDetail";
 import AcademicCardsDetail from "./components/Academic/AcademicCardsDetail";
-import Dashboard from "./pages/Dashboard_old";
-import Admin from "./pages/Admin";
+import Dashboard from "./pages/admin/dashboard";
+import Competition from "./pages/admin/competition";
+import Scholarship from "./pages/admin/scholarship";
+import Seminar from "./pages/admin/seminar";
+import Member from "./pages/admin/member";
+import ProkerAdmin from "./pages/admin/proker";
 
 const RouterBuilder = () => {
   //Only for client to see
@@ -52,12 +56,28 @@ const RouterBuilder = () => {
 
   const adminRoutes: RouteObject[] = [
     {
-      path: "/admin/dashboard",
+      path: "/admin",
       element: <Dashboard />,
     },
     {
-      path: "/admin",
-      element: <Admin />,
+      path: "/admin/competition",
+      element: <Competition />,
+    },
+    {
+      path: "/admin/scholarship",
+      element: <Scholarship />,
+    },
+    {
+      path: "/admin/seminar",
+      element: <Seminar />,
+    },
+    {
+      path: "/admin/proker",
+      element: <ProkerAdmin />,
+    },
+    {
+      path: "/admin/member",
+      element: <Member />,
     },
   ];
 
