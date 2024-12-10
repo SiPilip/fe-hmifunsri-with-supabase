@@ -9,6 +9,7 @@ import {
 import { getAllDinas } from "@/lib/networks/dinas";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
+import DinasActionPopup from "./dinas-action-popup";
 
 export default function DinasList({ isLoadingForm }: any) {
   const {
@@ -36,8 +37,7 @@ export default function DinasList({ isLoadingForm }: any) {
             <TableHead>Nama Dinas</TableHead>
             <TableHead>Divisi</TableHead>
             <TableHead>Deskripsi</TableHead>
-            <TableHead>Gambar</TableHead>
-            {/* <TableHead>Aksi</TableHead> */}
+            <TableHead>Aksi</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -54,11 +54,10 @@ export default function DinasList({ isLoadingForm }: any) {
                     ))
                   : "-"}
               </TableCell>
-              <TableCell className="line-clamp-2 text-left">
-                {item.desc}
+              <TableCell className="text-left">{item.desc}</TableCell>
+              <TableCell>
+                <DinasActionPopup data={item} />
               </TableCell>
-              <TableCell>{item.img}</TableCell>
-              <TableCell>{/* <ProkerActionPopup data={item} /> */}</TableCell>
             </TableRow>
           ))}
         </TableBody>

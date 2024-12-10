@@ -26,13 +26,13 @@ export async function postDinas(data: any) {
 
     const { error: uploadError } = await supabase.storage
       .from(`img/dinas`)
-      .upload(fileName, data.img);
+      .upload(fileName, data.img[0]);
 
     if (uploadError) {
       throw new Error(`Gagal upload foto ${data.slug}: ${uploadError.message}`);
     }
 
-    const filePath = `/img/dinas/${data.slug}`;
+    const filePath = `/img/dinas/${fileName}`;
 
     // olah data, untuk dimasukin ke supabase
     const processedValues = {
@@ -57,7 +57,7 @@ export async function postDinas(data: any) {
   }
 }
 
-export async function updateProker(data: any, id: any) {
+export async function updateDinas(data: any, id: any) {
   // keluarin assets, dan inisiasi tempat file gambar
   const assetsArray = Object.values(data.assets);
   const pathImage: any = [];
