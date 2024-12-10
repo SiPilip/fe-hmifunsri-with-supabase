@@ -16,6 +16,7 @@ import Scholarship from "./pages/admin/scholarship";
 import Seminar from "./pages/admin/seminar";
 import Member from "./pages/admin/member";
 import ProkerAdmin from "./pages/admin/proker";
+import Dinas from "./pages/admin/dinas";
 
 const RouterBuilder = () => {
   //Only for client to see
@@ -58,6 +59,10 @@ const RouterBuilder = () => {
     {
       path: "/admin",
       element: <Dashboard />,
+    },
+    {
+      path: "/admin/dinas",
+      element: <Dinas />,
     },
     {
       path: "/admin/competition",

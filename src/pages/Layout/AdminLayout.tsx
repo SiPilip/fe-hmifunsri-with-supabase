@@ -15,11 +15,13 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const navAdmin = [
   { title: "Dashboard", to: "/admin" },
+  { title: "Dinas", to: "/admin/dinas" },
+  { title: "Divisi", to: "/admin/divisi" },
+  { title: "Member", to: "/admin/member" },
+  { title: "Proker", to: "/admin/proker" },
   { title: "Competition", to: "/admin/competition" },
   { title: "Scholarship", to: "/admin/scholarship" },
   { title: "Seminar", to: "/admin/seminar" },
-  { title: "Proker", to: "/admin/Proker" },
-  { title: "Member", to: "/admin/Member" },
 ];
 
 const AdminLayout = memo(() => {

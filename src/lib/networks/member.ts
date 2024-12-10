@@ -1,23 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
 import { supabase } from "../createClient";
 import { v4 as uuidv4 } from "uuid";
 
-interface ColumnProker {
-  name: string | null;
-  date: string | null;
-  event_format: string | null;
-  description: string | null;
-  dinas: string | null;
-  benefits: any | null;
-  assets: any | null;
-}
-
-export async function getAllProker() {
+export async function getAllMember() {
   try {
     const { data, error } = await supabase
-      .from("proker")
+      .from("member")
       .select("*")
-      .order("created_at", { ascending: false });
+      .order("name", { ascending: true });
 
     if (error) throw new Error(error.message);
 
@@ -27,7 +16,7 @@ export async function getAllProker() {
   }
 }
 
-async function postProker(data: any) {
+export async function postProker(data: any) {
   try {
     // keluarin assets, dan inisiasi tempat file gambar
     const assetsArray = Object.values(data.assets);
@@ -129,45 +118,3 @@ export async function deleteProker(id: any) {
     throw new Error(error.message);
   }
 }
-
-async function getProkerData() {
-  try {
-    const { data: fetchedData, error } = await supabase
-      .from("proker")
-      .select("*");
-
-    if (error) {
-      console.error("Error fetching data:", error);
-    } else {
-      // console.log(fetchedData);
-      return fetchedData;
-    }
-  } catch (err) {
-    console.error("Error in fetchData:", err);
-  }
-}
-
-function useProkerData() {
-  const { data } = useQuery<ColumnProker[], Error>({
-    queryKey: ["memberQuery"],
-    queryFn: () =>
-      new Promise<ColumnProker[]>((resolve, reject) => {
-        getProkerData()
-          .then((res) => {
-            if (res) {
-              resolve(res);
-            } else {
-              reject("No data found");
-            }
-          })
-          .catch((err) => {
-            reject(err);
-          });
-      }),
-  });
-
-  return data;
-}
-
-export { postProker, useProkerData, getProkerData };
-export type { ColumnProker };

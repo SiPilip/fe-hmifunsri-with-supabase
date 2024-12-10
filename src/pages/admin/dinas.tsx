@@ -1,22 +1,22 @@
 import Container from "@/components/admin/container";
-import ProkerCreate from "@/components/admin/proker/proker-create";
+import DinasCreate from "@/components/admin/dinas/dinas-create";
+import DinasList from "@/components/admin/dinas/dinas-list";
 import { useState } from "react";
-import MemberList from "@/components/admin/member/member-list";
 
-export default function Member() {
+export default function Dinas() {
   const [isLoadingForm, setIsLoadingForm] = useState(false);
 
   return (
     <>
-      <h1>Program Kerja</h1>
+      <h1>Dinas</h1>
       <Container>
-        <ProkerCreate
+        <DinasCreate
           setIsLoadingForm={setIsLoadingForm}
           isLoadingForm={isLoadingForm}
         />
       </Container>
       <Container>
-        <MemberList isLoadingForm={isLoadingForm} />
+        <DinasList isLoadingForm={isLoadingForm} />
       </Container>
     </>
   );
