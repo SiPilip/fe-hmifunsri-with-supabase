@@ -107,6 +107,10 @@ export async function updateProker(data: any, id: any) {
     assets: pathImage,
   };
 
+  if (pathImage.length === 0) {
+    delete processedValues.assets;
+  }
+
   // create data
   const { error } = await supabase
     .from("proker")
